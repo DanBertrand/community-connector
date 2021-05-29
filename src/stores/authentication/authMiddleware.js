@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 
 export const fetchToRegister = (data) => {
   return async (dispatch) => {
-    const API_URL = process.env.REACT_APP_API_URL;
+    const API_URL = "https://api-community-connector.herokuapp.com/";
     try {
       const response = await fetch(`${API_URL}/signup`, {
         method: "POST",
@@ -37,7 +37,7 @@ export const fetchToRegister = (data) => {
 
 export const fetchToLogin = (data) => {
   return async (dispatch) => {
-    const API_URL = process.env.REACT_APP_API_URL;
+    const API_URL = "https://api-community-connector.herokuapp.com/";
     try {
       const response = await fetch(`${API_URL}/login`, {
         method: "POST",
@@ -71,7 +71,7 @@ export const fetchToLogin = (data) => {
 
 export const fetchCurrentUser = (token) => {
   return async (dispatch) => {
-    const API_URL = process.env.REACT_APP_API_URL;
+    const API_URL = "https://api-community-connector.herokuapp.com/";
     try {
       const response = await fetch(`${API_URL}/api/profile`, {
         method: "GET",
@@ -96,7 +96,7 @@ export const fetchCurrentUser = (token) => {
 
 export const fetchToLogout = (token) => {
   return async (dispatch) => {
-    const API_URL = process.env.REACT_APP_API_URL;
+    const API_URL = "https://api-community-connector.herokuapp.com/";
     try {
       const response = await fetch(`${API_URL}/logout`, {
         method: "DELETE",
