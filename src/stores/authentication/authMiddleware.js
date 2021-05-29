@@ -8,14 +8,15 @@ export const fetchToRegister = (data) => {
     const API_URL = process.env.REACT_APP_API_URL;
     try {
       const response = await fetch(`${API_URL}/signup`, {
-        method: "post",
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });
       if (!response.ok) {
-        console.log("Une erreur est survenue:", response.statusText);
+        const dataError = await response.json();
+        console.log("Une erreur est survenue:", dataError);
         dispatch(authActions.registerFail());
         Cookies.remove("token");
         dispatch(displayError("Erreur d'enregistrement"));
@@ -39,7 +40,7 @@ export const fetchToLogin = (data) => {
     const API_URL = process.env.REACT_APP_API_URL;
     try {
       const response = await fetch(`${API_URL}/login`, {
-        method: "post",
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
@@ -52,6 +53,9 @@ export const fetchToLogin = (data) => {
         dispatch(displayError("Aucun utilisateur correspondant"));
         return false;
       }
+
+      console.log("login response", response);
+
       const token = await response.headers.get("authorization").split(" ")[1];
       const user = await response.json();
       const userToLog = { token, user };
@@ -70,7 +74,7 @@ export const fetchCurrentUser = (token) => {
     const API_URL = process.env.REACT_APP_API_URL;
     try {
       const response = await fetch(`${API_URL}/api/profile`, {
-        method: "get",
+        method: "GET",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -95,13 +99,15 @@ export const fetchToLogout = (token) => {
     const API_URL = process.env.REACT_APP_API_URL;
     try {
       const response = await fetch(`${API_URL}/logout`, {
-        method: "delete",
+        method: "DELETE",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
       });
       if (!response.ok) {
+        console.log("token", token);
+        console.log("response", response.json());
         throw Error(response.statusText);
       }
       dispatch(authActions.logoutSuccess());
