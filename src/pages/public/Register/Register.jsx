@@ -2,13 +2,10 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-
-import { fetchToRegister } from "../stores/authentication/authMiddleware";
-import App from "../App";
+import { fetchToRegister } from "../../../stores/authentication/authMiddleware";
 
 const Register = () => {
   const [email, setEmail] = useState("");
-  const [role, setRole] = useState("user");
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
@@ -18,7 +15,6 @@ const Register = () => {
     const data = {
       user: {
         email: email,
-        role: role,
         password: password,
       },
     };
@@ -28,8 +24,6 @@ const Register = () => {
       history.push("/");
     }
   };
-
-  console.log("role", role);
 
   return (
     <div className="Register">
@@ -43,15 +37,6 @@ const Register = () => {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        <br />
-        <label>
-          Register as :
-          <select value={role} onChange={(e) => setRole(e.target.value)}>
-            <option value="user">User</option>
-            <option value="community">Community</option>
-          </select>
-        </label>{" "}
-        <br />
         <input
           type="password"
           placeholder="password"

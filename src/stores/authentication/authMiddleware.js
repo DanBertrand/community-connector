@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 
 export const fetchToRegister = (data) => {
   return async (dispatch) => {
-    const API_URL = "https://api-community-connector.herokuapp.com";
+    const API_URL = process.env.REACT_APP_API_URL;
     try {
       const response = await fetch(`${API_URL}/signup`, {
         method: "POST",
@@ -37,7 +37,7 @@ export const fetchToRegister = (data) => {
 
 export const fetchToLogin = (data) => {
   return async (dispatch) => {
-    const API_URL = "https://api-community-connector.herokuapp.com";
+    const API_URL = process.env.REACT_APP_API_URL;
     try {
       const response = await fetch(`${API_URL}/login`, {
         method: "POST",
@@ -46,15 +46,17 @@ export const fetchToLogin = (data) => {
         },
         body: JSON.stringify(data),
       });
-      if (!response.ok) {
+      if (!response.ok || !response.headers.get("authorization")) {
+        console.log("login response", response);
         console.log("Une erreur est survenue:", response.statusText);
         dispatch(authActions.loginFail());
         Cookies.remove("token");
-        dispatch(displayError("Aucun utilisateur correspondant"));
+        dispatch(displayError("Mail address or password incorrect"));
         return false;
       }
 
       console.log("login response", response);
+      console.log("response header", await response.headers);
 
       const token = await response.headers.get("authorization").split(" ")[1];
       const user = await response.json();
@@ -71,9 +73,9 @@ export const fetchToLogin = (data) => {
 
 export const fetchCurrentUser = (token) => {
   return async (dispatch) => {
-    const API_URL = "https://api-community-connector.herokuapp.com";
+    const API_URL = process.env.REACT_APP_API_URL;
     try {
-      const response = await fetch(`${API_URL}/api/profile`, {
+      const response = await fetch(`${API_URL}/profile`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -96,7 +98,7 @@ export const fetchCurrentUser = (token) => {
 
 export const fetchToLogout = (token) => {
   return async (dispatch) => {
-    const API_URL = "https://api-community-connector.herokuapp.com";
+    const API_URL = process.env.REACT_APP_API_URL;
     try {
       const response = await fetch(`${API_URL}/logout`, {
         method: "DELETE",
