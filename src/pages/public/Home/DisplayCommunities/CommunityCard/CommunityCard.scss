@@ -1,2 +1,7 @@
-.CommunityCard {
+.CommunityCard,
+CommunityCard:hover,
+CommunityCard:focus,
+CommunityCard:active {
+  text-decoration: none;
+  color: inherit;
 }

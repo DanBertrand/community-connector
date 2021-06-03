@@ -12,6 +12,8 @@ import Footer from "components/layout/Footer";
 import FlashMessage from "components/layout/FlashMessage";
 import PrivateRoute from "components/PrivateRoute";
 import PublicRoute from "components/PublicRoute";
+import CommunityProfile from "./pages/public/CommunityProfile/CommunityProfile";
+import CreateCommunity from "./pages/private/CreateCommunity/CreateCommunity";
 
 const App = () => {
   const [loadReady, setLoadReady] = useState(false);
@@ -63,6 +65,17 @@ const App = () => {
               currentUser={currentUser}
               component={Profile}
               path="/profile"
+              exact
+            />
+            <PrivateRoute
+              currentUser={currentUser}
+              component={CreateCommunity}
+              path="/new_communtity"
+              exact
+            />
+            <PublicRoute
+              component={CommunityProfile}
+              path="/community/:id"
               exact
             />
           </Switch>

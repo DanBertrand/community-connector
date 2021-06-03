@@ -88,6 +88,7 @@ export const fetchCurrentUser = (token) => {
       const user = await response.json();
       const userToLoad = { token, user };
       dispatch(authActions.loadCurrentUser(userToLoad));
+      console.log("User", user);
     } catch (error) {
       console.log(error);
       dispatch(authActions.loginFail());
