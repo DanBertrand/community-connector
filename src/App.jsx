@@ -74,6 +74,7 @@ const App = () => {
               exact
             />
             <PublicRoute
+              currentUser={currentUser}
               component={CommunityProfile}
               path="/community/:id"
               exact

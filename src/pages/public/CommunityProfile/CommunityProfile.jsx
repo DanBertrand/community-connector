@@ -7,7 +7,7 @@ import { FaCarrot } from "react-icons/fa";
 const CommunityProfile = (params) => {
   const { data, error, get, isLoading } = useFetch();
 
-  console.log(params.match.params.id);
+  console.log("params", params);
 
   useEffect(() => {
     get(`/communities/${params.match.params.id}`);

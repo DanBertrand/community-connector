@@ -13,6 +13,8 @@ const DisplayCommunity = () => {
     get(`/communities`);
   }, []);
 
+  console.log("data", data);
+
   return (
     <div className="DisplayCommunity">
       {data &&

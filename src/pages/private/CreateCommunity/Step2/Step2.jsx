@@ -64,6 +64,7 @@ const Step2 = ({ next, communityData, updateData, forward }) => {
 
   const body = (
     <>
+      <h1>Products & Workshops</h1>
       <StyledDiv>
         <div>
           Add some workshop{" "}

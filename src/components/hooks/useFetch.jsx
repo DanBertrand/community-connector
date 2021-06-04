@@ -56,7 +56,7 @@ const useFetch = () => {
       });
 
       const responseData = await response.json();
-
+      console.log("response", response);
       if (!response.ok) {
         throw responseData;
       }
@@ -66,6 +66,7 @@ const useFetch = () => {
       }
       return responseData;
     } catch (error) {
+      console.log("error", error);
       const errMessage = error.errors ? error.errors : "An error has occurred.";
       setError(errMessage);
       console.log(errMessage);

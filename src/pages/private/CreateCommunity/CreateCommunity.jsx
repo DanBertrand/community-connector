@@ -5,6 +5,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Step1 from "./Step1/Step1";
 import Step2 from "./Step2/Step2";
 import Step3 from "./Step3/Step3";
+import Step4 from "./Step4/Step4";
 
 const CreateCommunity = () => {
   const [formStep, setFormStep] = useState(1);
@@ -56,6 +57,16 @@ const CreateCommunity = () => {
       )}
       {formStep === 3 && (
         <Step3
+          updateData={updateData}
+          next={next}
+          communityData={communityData}
+          forward={forward}
+          save={save}
+        />
+      )}
+
+      {formStep === 4 && (
+        <Step4
           updateData={updateData}
           next={next}
           communityData={communityData}

@@ -15,6 +15,10 @@ const Navbar = () => {
     dispatch(fetchToLogout(token));
     history.push("/");
   };
+
+  console.log(currentUser);
+  console.log("history", history);
+
   return (
     <div className="Navbar">
       <h1>Navbar</h1>
@@ -31,6 +35,11 @@ const Navbar = () => {
             <Link to="/profile">Profile</Link>
             <button onClick={logout}>Se déconnecter</button>
           </>
+        )}
+        {currentUser && currentUser.community_creator.length > 0 && (
+          <Link to={`community/${currentUser.community_creator[0].id}`}>
+            My Community
+          </Link>
         )}
       </nav>
     </div>
