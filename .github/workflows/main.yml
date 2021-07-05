@@ -1,0 +1,134 @@
+- name: yarn actions (yaml)
+  # You may pin to the exact commit or the version.
+  # uses: sergioramos/yarn-actions@9b1e342dd77d2fc065ffda27138b1f5d41ff48b7
+  uses: sergioramos/yarn-actions@v6
+  with:
+    # output the version number
+    version: # optional
+    # prevent Yarn from automatically detecting yarnrc and npmrc files
+    no-default-rc: # optional
+    # specifies a yarnrc file that Yarn should use (.yarnrc only, not .npmrc)
+    use-yarnrc: # optional
+    # output verbose messages on internal operations
+    verbose: # optional
+    # trigger an error if any required dependencies are not available in local cache
+    offline: # optional
+    # use network only if dependencies are not available in local cache
+    prefer-offline: # optional
+    # enable the Plug'n'Play installation
+    enable-pnp: # optional
+    # disable the Plug'n'Play installation
+    disable-pnp: # optional
+    # 
+    strict-semver: # optional
+    # 
+    json: # optional
+    # 
+    ignore-scripts: # optional
+    # 
+    har: # optional
+    # 
+    ignore-platform: # optional
+    # 
+    ignore-engines: # optional
+    # 
+    ignore-optional: # optional
+    # 
+    force: # optional
+    # 
+    skip-integrity-check: # optional
+    # 
+    check-files: # optional
+    # 
+    no-bin-links: # optional
+    # 
+    flat: # optional
+    # 
+    production: # optional
+    # don't read or generate a lockfile
+    no-lockfile: # optional
+    # do not show interactive prompts
+    non-interactive: # optional, default is true
+    # don't generate a lockfile
+    pure-lockfile: # optional
+    # don't generate a lockfile and fail if an update is needed
+    frozen-lockfile: # optional
+    # update package checksums from current repository
+    update-checksums: # optional
+    # create hardlinks to the repeated modules in node_modules
+    link-duplicates: # optional
+    # specify a custom folder to store global links
+    link-folder: # optional
+    # specify a custom folder to store global packages
+    global-folder: # optional
+    # rather than installing modules into the node_modules folder relative to the cwd, output them here
+    modules-folder: # optional
+    # specify a custom folder to store the yarn cache if possible
+    preferred-cache-folder: # optional
+    # specify a custom folder that must be used to store the yarn cache
+    cache-folder: # optional
+    # use a mutex to ensure only one yarn instance is executing
+    mutex: # optional
+    # disabled emoji in output
+    no-emoji: # optional
+    # skip Yarn console logs, other types of logs (script output) will be printed
+    silent: # optional
+    # working directory to use
+    cwd: # optional
+    # 
+    proxy: # optional
+    # 
+    https-proxy: # optional
+    # override configuration registry
+    registry: # optional
+    # disable progress bar
+    no-progress: # optional
+    # maximum number of concurrent network requests
+    network-concurrency: # optional
+    # TCP timeout for network requests
+    network-timeout: # optional
+    # don't prepend the node executable dir to the PATH in scripts
+    no-scripts-prepend-node-path: # optional
+    # do not warn when using a potentially unsupported Node version
+    no-node-version-check: # optional
+    # Focus on a single workspace by installing remote copies of its sibling workspaces
+    focus: # optional
+    # one-time password for two factor authentication
+    otp: # optional
+    # output usage information
+    help: # optional# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
